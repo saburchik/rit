@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, delay, Observable, throwError } from 'rxjs';
-import { IPlanet } from '../models/planet';
+import { Planet } from '../models/planet';
 import { ErrorService } from './error.service';
 
 @Injectable({
@@ -14,9 +14,9 @@ import { ErrorService } from './error.service';
 export class PlanetsService {
   constructor(private http: HttpClient, private errorService: ErrorService) {}
 
-  getAllPlanets(): Observable<IPlanet[]> {
+  getAllPlanets(): Observable<Planet[]> {
     return this.http
-      .get<IPlanet[]>('https://swapi.dev/api/planets')
+      .get<Planet[]>('https://swapi.dev/api/planets')
       .pipe(delay(2000), catchError(this.errorHandler.bind(this)));
   }
   private errorHandler(error: HttpErrorResponse) {

@@ -1,4 +1,4 @@
-export interface IPlanet {
+export interface Planet {
   name: string;
   rotation_period: string;
   orbital_period: string;
@@ -8,9 +8,14 @@ export interface IPlanet {
   terrain: string;
   surface_water: string;
   population: string;
-  residents: string[];
-  films: string[];
+  residents: Array<string>;
+  films: Array<string>;
   created: string;
   edited: string;
   url: string;
+  slug: string;
+}
+
+export interface APIResponse<T> {
+  results: Array<T>;
 }

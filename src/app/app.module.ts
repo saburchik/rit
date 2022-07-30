@@ -6,9 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GlobalErrorComponent } from './components/global-error/global-error.component';
 import { PlanetComponent } from './components/planet/planet.components';
+import { MainComponent } from './components/main/main.component';
+import { DetailsComponent } from './components/details/details.component';
 
 @NgModule({
-  declarations: [AppComponent, PlanetComponent, GlobalErrorComponent],
+  declarations: [AppComponent, PlanetComponent, GlobalErrorComponent, MainComponent, DetailsComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

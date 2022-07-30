@@ -1,0 +1,27 @@
+<section class="bg-starwars w-full h-full min-h-[100vh]">
+  <h1 class="text-center text-5xl font-bold p-4 pt-8 text-white">
+    Star Wars Planets
+  </h1>
+  <app-global-error></app-global-error>
+  <div class="flex flex-wrap justify-center max-w-[1200px] pb-4 mx-auto">
+    <ng-container *ngFor="let planet of planets">
+      <article
+        (click)="openPlanetDetails(planet.url)"
+        class="flex flex-col justify-between w-[280px] h-[330px] m-2 overflow-hidden rounded-md bg-slate-600 cursor-pointer"
+      >
+        <h2 class="text-red-500 text-center text-xl font-bold p-4">
+          {{ planet.name }}
+        </h2>
+        <img
+          class="w-full h-[200px]"
+          src="assets/planets/{{ planet.name }}.jpg"
+          alt="{{ planet.name }}"
+        />
+        <div class="p-4">
+          <p class="text-white">Diameter: {{ planet.diameter }}</p>
+          <p class="text-white">Population: {{ planet.population }}</p>
+        </div>
+      </article>
+    </ng-container>
+  </div>
+</section>
