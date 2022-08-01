@@ -1,1 +1,60 @@
-<p>details works!</p>
+<div
+  *ngIf="loaderService.isLoading | async"
+  class="flex w-full h-full min-h-[100vh] justify-center items-center"
+>
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<section *ngIf="planet" class="bg-slate-700 w-full min-h-[100vh]">
+  <h1 class="text-center text-5xl font-bold p-4 pt-8 text-white m-0">
+    The planet is <strong class="">{{ planet.name }}</strong>
+  </h1>
+  <div class="flex-1 gap-4 justify-center items-center max-w-6xl mx-auto p-4">
+    <ul
+      class="flex flex-col gap-2 p-4 border rounded-md text-white bg-slate-500"
+    >
+      <li>
+        Diamenter: <strong class="text-blue-500">{{ planet.diameter }}</strong>
+      </li>
+      <li>
+        Climate: <strong class="text-blue-500">{{ planet.climate }}</strong>
+      </li>
+      <li>
+        Gravity: <strong class="text-blue-500">{{ planet.gravity }}</strong>
+      </li>
+      <li>
+        Terrain: <strong class="text-blue-500">{{ planet.terrain }}</strong>
+      </li>
+      <li>
+        Surface Water:
+        <strong class="text-blue-500">{{ planet.surface_water }}</strong>
+      </li>
+      <li>
+        Population:
+        <strong class="text-blue-500">{{ planet.population }}</strong>
+      </li>
+      <li>
+        Orbital Period:
+        <strong class="text-blue-500">{{ planet.orbital_period }}</strong>
+      </li>
+      <li>
+        Rotation Period:
+        <strong class="text-blue-500">{{ planet.rotation_period }}</strong>
+      </li>
+    </ul>
+
+    <div>
+      <!-- <ng-container *ngFor="let person of people">
+        <article
+          class="flex flex-col justify-between w-[280px] h-[330px] m-2 overflow-hidden rounded-md bg-slate-600 cursor-pointer"
+        >
+          <h2 class="text-red-500 text-center text-xl font-bold p-4">
+            {{ person.name }}
+          </h2>
+          <p class="text-white">height: {{ person.height }}</p>
+          <p class="text-white">eye_color: {{ person.eye_color }}</p>
+        </article>
+      </ng-container> -->
+    </div>
+  </div>
+</section>

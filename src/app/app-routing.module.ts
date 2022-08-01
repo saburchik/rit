@@ -7,10 +7,13 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+    title: 'Star Wars',
   },
   {
     path: 'details/:id',
     component: DetailsComponent,
+    data: { title: 'Planet Details' },
+    title: 'SW | Planet Details',
   },
 ];
 

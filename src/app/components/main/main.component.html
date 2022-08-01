@@ -1,4 +1,11 @@
-<section class="bg-starwars w-full h-full min-h-[100vh]">
+<div
+  *ngIf="loaderService.isLoading | async"
+  class="flex w-full min-h-[100vh] justify-center items-center fixed z-50"
+>
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<section class="bg-starwars w-full min-h-[100vh]">
   <h1 class="text-center text-5xl font-bold p-4 pt-8 text-white">
     Star Wars Planets
   </h1>

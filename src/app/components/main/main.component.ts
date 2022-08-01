@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { APIResponse, Planet } from 'src/app/models/planet';
 import { HttpService } from 'src/app/services/http.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-main',
@@ -17,7 +18,8 @@ export class MainComponent implements OnInit, OnDestroy {
   constructor(
     private httpService: HttpService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public loaderService: LoaderService
   ) {}
 
   ngOnInit(): void {
@@ -31,9 +33,8 @@ export class MainComponent implements OnInit, OnDestroy {
       });
   }
   openPlanetDetails(url: string) {
-    const planetId: Array<string> | null | any = url.match(/\d+/g);
-
-    this.router.navigate(['details', planetId[0]]);
+    const planetId: RegExpMatchArray | null = url.match(/\d+/g);
+    if (planetId) this.router.navigate(['details', planetId[0]]);
   }
   ngOnDestroy(): void {
     if (this.planetSub) this.planetSub.unsubscribe();
