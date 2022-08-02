@@ -6,7 +6,7 @@
 </div>
 
 <section class="bg-starwars w-full min-h-[100vh]">
-  <h1 class="text-center text-5xl font-bold p-4 pt-8 text-white">
+  <h1 class="text-center text-7xl font-bold p-4 pt-8 text-white">
     Star Wars Planets
   </h1>
   <app-global-error></app-global-error>
@@ -14,13 +14,13 @@
     <ng-container *ngFor="let planet of planets">
       <article
         (click)="openPlanetDetails(planet.url)"
-        class="flex flex-col justify-between w-[280px] h-[330px] m-2 overflow-hidden rounded-md bg-slate-600 cursor-pointer"
+        class="flex flex-col justify-between w-[280px] h-[330px] duration-200 hover:shadow-[4px_4px_12px_6px_rgb(200,67,54)] shadow-[4px_4px_8px_rgb(200,67,54)] m-2 overflow-hidden rounded-md bg-slate-600 cursor-pointer"
       >
-        <h2 class="text-red-500 text-center text-xl font-bold p-4">
+        <h2 class="text-blue-400 text-center text-xl font-bold p-4">
           {{ planet.name }}
         </h2>
         <img
-          class="w-full h-[200px]"
+          class="w-full h-[150px]"
           src="assets/planets/{{ planet.name }}.jpg"
           alt="{{ planet.name }}"
         />

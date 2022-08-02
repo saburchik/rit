@@ -1,6 +1,6 @@
 <div
   *ngIf="loaderService.isLoading | async"
-  class="flex w-full h-full min-h-[100vh] justify-center items-center"
+  class="flex w-full h-full min-h-[100vh] justify-center items-center bg-slate-700"
 >
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
@@ -14,37 +14,37 @@
       class="flex flex-col gap-2 p-4 border rounded-md text-white bg-slate-500"
     >
       <li>
-        Diamenter: <strong class="text-blue-500">{{ planet.diameter }}</strong>
+        Diamenter: <strong class="text-blue-400">{{ planet.diameter }}</strong>
       </li>
       <li>
-        Climate: <strong class="text-blue-500">{{ planet.climate }}</strong>
+        Climate: <strong class="text-blue-400">{{ planet.climate }}</strong>
       </li>
       <li>
-        Gravity: <strong class="text-blue-500">{{ planet.gravity }}</strong>
+        Gravity: <strong class="text-blue-400">{{ planet.gravity }}</strong>
       </li>
       <li>
-        Terrain: <strong class="text-blue-500">{{ planet.terrain }}</strong>
+        Terrain: <strong class="text-blue-400">{{ planet.terrain }}</strong>
       </li>
       <li>
         Surface Water:
-        <strong class="text-blue-500">{{ planet.surface_water }}</strong>
+        <strong class="text-blue-400">{{ planet.surface_water }}</strong>
       </li>
       <li>
         Population:
-        <strong class="text-blue-500">{{ planet.population }}</strong>
+        <strong class="text-blue-400">{{ planet.population }}</strong>
       </li>
       <li>
         Orbital Period:
-        <strong class="text-blue-500">{{ planet.orbital_period }}</strong>
+        <strong class="text-blue-400">{{ planet.orbital_period }}</strong>
       </li>
       <li>
         Rotation Period:
-        <strong class="text-blue-500">{{ planet.rotation_period }}</strong>
+        <strong class="text-blue-400">{{ planet.rotation_period }}</strong>
       </li>
     </ul>
 
     <div>
-      <!-- <ng-container *ngFor="let person of people">
+      <ng-container *ngFor="let person of people">
         <article
           class="flex flex-col justify-between w-[280px] h-[330px] m-2 overflow-hidden rounded-md bg-slate-600 cursor-pointer"
         >
@@ -54,7 +54,7 @@
           <p class="text-white">height: {{ person.height }}</p>
           <p class="text-white">eye_color: {{ person.eye_color }}</p>
         </article>
-      </ng-container> -->
+      </ng-container>
     </div>
   </div>
 </section>

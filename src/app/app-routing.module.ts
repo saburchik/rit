@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { DetailsComponent } from './components/details/details.component';
-import { MainComponent } from './components/main/main.component';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { DetailsComponent } from './components/details/details.component'
+import { MainComponent } from './components/main/main.component'
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
     data: { title: 'Planet Details' },
     title: 'SW | Planet Details',
   },
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
