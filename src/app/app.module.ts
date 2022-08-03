@@ -10,8 +10,12 @@ import { DetailsComponent } from './components/details/details.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatIconModule } from '@angular/material/icon'
+import { MatSelectModule } from '@angular/material/select'
 import { InterceptorService } from './services/loader/interceptor.service'
 import { NavComponent } from './components/nav/nav.component'
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { NavComponent } from './components/nav/nav.component'
     HttpClientModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    FormsModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatIconModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

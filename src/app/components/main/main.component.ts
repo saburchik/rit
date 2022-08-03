@@ -32,7 +32,10 @@ export class MainComponent implements OnInit, OnDestroy {
   }
   openPlanetDetails(url: string) {
     const planetId: RegExpMatchArray | null = url.match(/\d+/g)
-    if (planetId) this.router.navigate(['details', planetId[0]])
+    if (planetId) {
+      this.router.navigate(['details', planetId[0]])
+      window.scrollTo(0, 0)
+    }
   }
   ngOnDestroy(): void {
     if (this.planetSub) this.planetSub.unsubscribe()
