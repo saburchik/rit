@@ -11,15 +11,17 @@ import { LoaderService } from 'src/app/services/loader/loader.service'
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit, OnDestroy {
-  public common: IPeople[] = []
-  public sort: string
-  public filterGender: IPeople[] = []
-  public people: IPeople[] = []
-  public residents: string[] | IPeople[]
+  private planetId: string
+  private filterGender: IPeople[] = []
+  private allPeople: IPeople[] = []
+  private residentsAPI: Array<string> | IPeople[]
+  private routeSub: Subscription
+  private planetSub: Subscription
+
   public planet: IPlanet
-  public planetId: string
-  public routeSub: Subscription
-  public planetSub: Subscription
+  public people: IPeople[] = []
+  public sort: string
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private httpService: HttpService,
@@ -29,45 +31,36 @@ export class DetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routeSub = this.activatedRoute.params.subscribe((params: Params) => {
       this.planetId = params['id']
-      this.getDetails(this.planetId)
+      this.getPlanetDetails(this.planetId)
     })
   }
-  getDetails(id: string): void {
+  getPlanetDetails(id: string): void {
     this.planetSub = this.httpService
-      .getPlanetDetails(id)
+      .getPlanetDetailsHttp(id)
       .subscribe((planetResponse: IPlanet) => {
         this.planet = planetResponse
-        this.residents = planetResponse.residents
+        this.residentsAPI = planetResponse.residents
 
-        if (this.residents) {
-          for (let i: number = 0; i < this.residents.length; i++) {
-            this.httpService
-              .getPeopleDetails(this.residents[i])
-              .subscribe((peopleResponse: IPeople) => {
-                this.people = [...this.people, peopleResponse]
-                this.common = this.people
-              })
-          }
+        for (let i = 0; i < this.residentsAPI.length; i++) {
+          this.httpService
+            .getPeopleDetails(this.residentsAPI[i] as string)
+            .subscribe((response: IPeople) => {
+              this.allPeople = [...this.allPeople, response]
+              this.people = this.allPeople
+            })
         }
       })
   }
   filteringGender(sort: string): void {
     this.filterGender = []
-    if (this.people) {
-      for (let i = 0; i < this.people.length; i++) {
-        if (this.people[i].gender === sort) {
-          this.filterGender = [...this.filterGender, this.people[i]]
-          this.common = this.filterGender
-        }
-        if (this.filterGender.length === 0) {
-          this.common = this.filterGender
-        }
+    for (let i = 0; i < this.allPeople.length; i++) {
+      if (this.allPeople[i].gender === sort) {
+        this.filterGender = [...this.filterGender, this.allPeople[i]]
+        this.people = this.filterGender
       }
-      if (sort === 'all') this.common = this.people
-      console.log(this.filterGender)
+      if (!this.filterGender.length) this.people = this.filterGender
     }
-
-    console.log(this.people)
+    if (sort === 'all') this.people = this.allPeople
   }
   ngOnDestroy(): void {
     if (this.planetSub) this.planetSub.unsubscribe()

@@ -1,57 +1,67 @@
-<div
-  *ngIf="loaderService.isLoading | async"
-  class="flex w-full h-full min-h-[100vh] justify-center items-center bg-slate-700"
->
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-</div>
-
-<div class="flex flex-col bg-[#030024]">
-  <section
-    *ngIf="planet"
-    class="bg-swDetails bg-cover bg-center w-full min-h-[100vh] pt-20"
+<div class="flex flex-col bg-[#030024] min-h-[100vh]">
+  <div class="absolute w-full top-60">
+    <app-global-error></app-global-error>
+  </div>
+  <div
+    *ngIf="loaderService.isLoading | async"
+    class="flex w-full h-full justify-center items-center absolute"
   >
-    <h1 class="text-center text-5xl font-bold p-4 pt-8 text-white m-0">
-      The planet is <strong class="text-yellow-200">{{ planet.name }}</strong>
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <section class="bg-swDetails bg-cover bg-center w-full min-h-[100vh] pt-20">
+    <h1
+      *ngIf="planet"
+      class="text-center text-5xl font-bold p-4 pt-8 text-[#030024] m-0"
+    >
+      The planet <strong class="text-white">{{ planet.name }}</strong>
     </h1>
     <article
-      class="flex-1 gap-4 justify-center items-center max-w-6xl mx-auto p-4 border rounded-md text-white bg-[#030024]"
+      *ngIf="planet"
+      class="flex-1 gap-4 justify-center items-center w-max mx-auto p-4 border-2 border-yellow-500 rounded-md text-white bg-[#030024]"
     >
-      <h3 class="text-center text-1xl font-bold">Basic Information</h3>
-      <ul class="flex flex-col gap-2">
-        <li>
+      <h3 class="text-center text-1xl font-bold text-slate-300">
+        Basic Information
+      </h3>
+      <ul class="flex flex-col gap-2 w-72 mx-auto text-slate-300">
+        <li class="flex justify-between gap-4">
           Diamenter:
-          <strong class="text-blue-400">{{ planet.diameter }}</strong>
+          <strong class="text-style">{{ planet.diameter }}</strong>
         </li>
-        <li>
-          Climate: <strong class="text-blue-400">{{ planet.climate }}</strong>
+        <li class="flex justify-between gap-4">
+          Climate:
+          <strong class="text-style">{{ planet.climate }}</strong>
         </li>
-        <li>
-          Gravity: <strong class="text-blue-400">{{ planet.gravity }}</strong>
+        <li class="flex justify-between gap-4">
+          Gravity:
+          <strong class="text-style">{{ planet.gravity }}</strong>
         </li>
-        <li>
-          Terrain: <strong class="text-blue-400">{{ planet.terrain }}</strong>
+        <li class="flex justify-between gap-4">
+          Terrain:
+          <strong class="text-style">{{ planet.terrain }}</strong>
         </li>
-        <li>
+        <li class="flex justify-between gap-4">
           Surface Water:
-          <strong class="text-blue-400">{{ planet.surface_water }}</strong>
+          <strong class="text-style">{{ planet.surface_water }}</strong>
         </li>
-        <li>
+        <li class="flex justify-between gap-4">
           Population:
-          <strong class="text-blue-400">{{ planet.population }}</strong>
+          <strong class="text-style">{{ planet.population }}</strong>
         </li>
-        <li>
+        <li class="flex justify-between gap-4">
           Orbital Period:
-          <strong class="text-blue-400">{{ planet.orbital_period }}</strong>
+          <strong class="text-style">{{ planet.orbital_period }}</strong>
         </li>
-        <li>
+        <li class="flex justify-between gap-4">
           Rotation Period:
-          <strong class="text-blue-400">{{ planet.rotation_period }}</strong>
+          <strong class="text-style">{{ planet.rotation_period }}</strong>
         </li>
       </ul>
     </article>
   </section>
-  <section class="py-4">
-    <h2 class="text-white text-5xl text-center">Residents</h2>
+  <section
+    class="py-4 min-h-[500px] bg-gradient-to-r from-[#020024] to-[#9f0414]"
+  >
+    <h2 class="text-slate-300 text-5xl text-center">Residents</h2>
     <div class="px-4 max-w-7xl mx-auto">
       <mat-form-field class="">
         <mat-label class="text-white">Sort</mat-label>
@@ -68,22 +78,77 @@
       </mat-form-field>
     </div>
     <div
-      *ngIf="common.length !== 0"
+      *ngIf="loaderService.isLoading | async"
+      class="flex w-full h-full justify-center items-center absolute"
+    >
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <div
+      *ngIf="people.length !== 0"
       class="flex flex-wrap justify-center max-w-7xl pb-4 mx-auto"
     >
-      <ng-container *ngFor="let person of common">
+      <ng-container *ngFor="let person of people">
         <article
-          class="flex flex-col justify-between w-[280px] h-[330px] m-2 overflow-hidden rounded-md bg-slate-600"
+          class="flex flex-col justify-between w-[280px] m-2 overflow-hidden rounded-md bg-[#030024] border-2 border-yellow-500"
         >
-          <h2 class="text-red-500 text-center text-xl font-bold p-4">
+          <h2 class="text-yellow-500 text-center text-xl font-bold p-4">
             {{ person.name }}
           </h2>
-          <img src="assets/char.png" alt="character" />
-          <p class="text-white">height: {{ person.height }}</p>
-          <p class="text-white">eye_color: {{ person.eye_color }}</p>
+          <div class="border-t-2 border-b-2 flex justify-center">
+            <img
+              *ngIf="person.gender === 'female'"
+              src="assets/female.png"
+              alt="character"
+            />
+            <img
+              *ngIf="person.gender === 'male'"
+              src="assets/male.png"
+              alt="character"
+            />
+            <img
+              *ngIf="person.gender !== 'male' && person.gender !== 'female'"
+              src="assets/char.png"
+              alt="character"
+            />
+          </div>
+          <ul class="p-4 flex flex-col gap-2 text-slate-300">
+            <li class="flex justify-between">
+              Birth year:
+              <strong class="text-style">{{ person.birth_year }}</strong>
+            </li>
+            <li class="flex justify-between">
+              Gender:
+              <strong class="text-style">{{ person.gender }}</strong>
+            </li>
+            <li class="flex justify-between">
+              Height:
+              <strong class="text-style">{{ person.height }}</strong>
+            </li>
+            <li class="flex justify-between">
+              Eye color:
+              <strong class="text-style">{{ person.eye_color }}</strong>
+            </li>
+            <li class="flex justify-between">
+              Hair color:
+              <strong class="text-style">{{ person.hair_color }}</strong>
+            </li>
+            <li class="flex justify-between">
+              Skin color:
+              <strong class="text-style">{{ person.skin_color }}</strong>
+            </li>
+            <li class="flex justify-between">
+              Mass:
+              <strong class="text-style">{{ person.mass }}</strong>
+            </li>
+          </ul>
         </article>
       </ng-container>
     </div>
-    <h3 *ngIf="common.length === 0" class="text-white">Пусто!</h3>
+    <h3
+      *ngIf="people.length === 0"
+      class="text-black text-center p-2 bg-slate-300 w-full"
+    >
+      No residents have been identified.
+    </h3>
   </section>
 </div>

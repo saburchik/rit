@@ -16,12 +16,12 @@ export class HttpService {
       .get<APIResponse<IPlanet>>(`${env.BASE_URL}/planets`)
       .pipe(catchError(this.errorHandler.bind(this)))
   }
-  getPlanetDetails(id: string): Observable<IPlanet> {
+  getPlanetDetailsHttp(id: string): Observable<IPlanet> {
     return this.http
       .get<IPlanet>(`${env.BASE_URL}/planets/${id}`)
       .pipe(catchError(this.errorHandler.bind(this)))
   }
-  getPeopleDetails(linkAPI: any): Observable<IPeople> {
+  getPeopleDetails(linkAPI: string): Observable<IPeople> {
     return this.http
       .get<IPeople>(linkAPI)
       .pipe(catchError(this.errorHandler.bind(this)))

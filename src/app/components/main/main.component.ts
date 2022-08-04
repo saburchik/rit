@@ -11,9 +11,8 @@ import { LoaderService } from 'src/app/services/loader/loader.service'
 })
 export class MainComponent implements OnInit, OnDestroy {
   public planets: Array<IPlanet> = []
-  public id: string
-  public routeSub: Subscription
-  public planetSub: Subscription
+  private routeSub: Subscription
+  private planetSub: Subscription
   constructor(
     private httpService: HttpService,
     private router: Router,
