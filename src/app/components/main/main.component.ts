@@ -11,8 +11,10 @@ import { LoaderService } from 'src/app/services/loader/loader.service'
 })
 export class MainComponent implements OnInit, OnDestroy {
   public planets: Array<IPlanet> = []
+
   private routeSub: Subscription
   private planetSub: Subscription
+
   constructor(
     private httpService: HttpService,
     private router: Router,
@@ -29,7 +31,7 @@ export class MainComponent implements OnInit, OnDestroy {
         this.planets = planetList.results
       })
   }
-  openPlanetDetails(url: string) {
+  openPlanetDetails(url: string): void {
     const planetId: RegExpMatchArray | null = url.match(/\d+/g)
     if (planetId) {
       this.router.navigate(['details', planetId[0]])

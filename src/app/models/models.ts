@@ -1,7 +1,3 @@
-export interface APIResponse<T> {
-  results: Array<T>
-}
-
 export interface IPlanet {
   climate: string
   created: Date
@@ -17,6 +13,10 @@ export interface IPlanet {
   surface_water: string
   terrain: string
   url: string
+}
+
+export interface APIResponse<T> {
+  results: Array<T>
 }
 
 export interface IPeople {

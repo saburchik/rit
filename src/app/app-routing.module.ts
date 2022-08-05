@@ -12,7 +12,6 @@ const routes: Routes = [
   {
     path: 'details/:id',
     component: DetailsComponent,
-    data: { title: 'Planet Details' },
     title: 'SW | Planet Details',
   },
 ]

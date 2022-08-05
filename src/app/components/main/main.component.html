@@ -1,11 +1,13 @@
+<!-- Display spinner loading -->
 <div
   *ngIf="loaderService.isLoading | async"
-  class="flex w-full min-h-[100vh] justify-center items-center fixed z-50"
+  class="flex w-full h-full justify-center items-center absolute"
 >
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
-<section class="bg-starwars w-full min-h-[100vh] pt-20">
-  <h1 class="text-center important text-5xl font-bold px-4 mb-4 text-slate-300">
+<!-- Content -->
+<section class="bg-starwars w-full min-h-[100vh] pt-12">
+  <h1 class="text-center text-5xl font-bold px-4 my-8 text-slate-300">
     Star Wars Planets
   </h1>
   <app-global-error></app-global-error>
@@ -13,19 +15,25 @@
     <ng-container *ngFor="let planet of planets">
       <article
         (click)="openPlanetDetails(planet.url)"
-        class="flex flex-col justify-between w-[280px] h-[330px] duration-200 hover:shadow-hoverSh shadow-redSh border-red-500 m-2 overflow-hidden rounded-md bg-[#030024] border cursor-pointer"
+        class="flex flex-col justify-between w-72 h-80 duration-200 shadow-redSh border-red-500 m-2 rounded-md bg-[#030024] border-2 cursor-pointer hover:shadow-hoverSh"
       >
         <h2 class="text-slate-300 text-center text-xl font-bold p-4 uppercase">
           {{ planet.name }}
         </h2>
-        <img
-          class="w-full h-[150px]"
-          src="assets/planets/{{ planet.name }}.jpg"
-          alt="{{ planet.name }}"
-        />
+        <div class="w-full h-36 border-b-2 border-t-2">
+          <img
+            class="w-full h-full"
+            src="assets/planets/{{ planet.name }}.jpg"
+            alt="{{ planet.name }}"
+          />
+        </div>
         <div class="p-4">
-          <p class="text-slate-300">Diameter: {{ planet.diameter }}</p>
-          <p class="text-slate-300">Population: {{ planet.population }}</p>
+          <p class="flex justify-between gap-2 text-slate-300">
+            Diameter: <strong>{{ planet.diameter }}</strong>
+          </p>
+          <p class="flex justify-between gap-2 text-slate-300">
+            Population: <strong>{{ planet.population }}</strong>
+          </p>
         </div>
       </article>
     </ng-container>

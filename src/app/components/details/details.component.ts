@@ -12,7 +12,7 @@ import { LoaderService } from 'src/app/services/loader/loader.service'
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   private planetId: string
-  private filterGender: IPeople[] = []
+  private filterGender: IPeople[]
   private allPeople: IPeople[] = []
   private residentsAPI: Array<string> | IPeople[]
   private routeSub: Subscription
